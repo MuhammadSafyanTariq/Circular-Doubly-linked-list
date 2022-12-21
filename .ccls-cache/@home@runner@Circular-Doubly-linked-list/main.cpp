@@ -1,9 +1,3 @@
-// doublye circular linked list final
-
-
-
-
-
 #include<iostream>
 using namespace std;
 
@@ -170,53 +164,24 @@ p->next=head;
 
 free(q) ;
 }
-
-
-
-
-
-
-
-
-
 struct Node * sorting(struct Node * head) {
 struct Node * ptr=head;
-  
-
-struct Node * p;
-struct Node * q;
-struct Node * h=head;
-int temp;
 int i=0;
-  for(p=head; p->next!=head;p=p->next){
+while( ptr->next != head) {
+struct Node * p=head;
+struct Node * q=head->next;
+struct Node * temp;
+if(p->data > q->data){
+temp=p;
+p=q;
+q=temp;
+}
+p=p->next;
+q=q->next;
 
-for(q=p->next; q->next!=head;q=q->next){
-  if(p->data>q->data){
-    temp=p->data;
-    p->data=q->data;
-    q->data=temp;
-   if(i==0) {
-h=p;
-}
-  }
-
-}
-if(q->data<p->data){
-    temp=p->data;
-    p->data=q->data;
-    q->data=temp;
-    }
- i++;
-}
-return h;
 }
 
-  
-
-
-
-
-
+}
 
 
 
@@ -228,7 +193,6 @@ struct Node * head;
 struct Node * second;
 struct Node * third;
 struct Node * fourth;
-struct Node * fifth;
 struct Node * ptr;
 
 //creating Nodes
@@ -236,11 +200,10 @@ head=(struct Node*) malloc(sizeof(struct Node)) ;
 second=(struct Node*) malloc(sizeof(struct Node)) ;
 third=(struct Node*) malloc(sizeof(struct Node)) ;
 fourth=(struct Node*) malloc(sizeof(struct Node)) ;
-fifth=(struct Node*) malloc(sizeof(struct Node)) ;
 
 //linking nodes
 
-head->data=7777;
+head->data=777;
 head->prev=NULL;
 head->next=second;
 second->data=11;
@@ -251,18 +214,13 @@ third->data=777;
 third->next=fourth;
 fourth->prev=third;
 fourth->data=33;
-fourth->next=fifth;
-fifth->prev=fourth;
-fifth->data=300;
-fifth->next=head;
-
+fourth->next=head;
 traverse(head) ;
-head=sorting(head) ;
-
+deleteAtIndex(head,1) ;
 traverse(head) ;
-search(head, 300) ;
+
 //here you can call all the functions
 
 
 return 0;
-}
+} 
